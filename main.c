@@ -30,9 +30,9 @@ typedef enum {
 Direction conversionDirection(unsigned char v) {
     // À implémenter.
     if(v > 127){
-        return ARRIERE;
+        return AVANT;
     }
-    return AVANT;
+    return ARRIERE;
 //    if(v < 127){
 //       return AVANT;     
 //    }
@@ -48,13 +48,15 @@ unsigned char conversionMagnitude(unsigned char v) {
     // À implémenter.
     
     int mag;
-    
-    if(v < 127){
-       mag = (2*v);
+    if(v == 127 || v == 128){
+        mag = 0;
+    }
+    else if(v < 127){
+       mag = (127-v)*2;
        // return (PR2value-(PR2value-v));
     }
-    if(v > 128){
-        mag = 254-((v-128)*2);
+    else if(v > 128){
+        mag = (v-128)*2;
         //return (PR2value-(v-PR2value));
     }
     return mag;
